@@ -1,6 +1,10 @@
+// time complexity : O(N!)
+// Space complexity : O(N^2)
+
 import java.util.Scanner;
 
 public class NQueen1 {
+    public static int counter = 0;
     public static void printboard(int[][] board){
         int N = board.length;
 
@@ -33,31 +37,28 @@ public class NQueen1 {
         return true;
     }
 
-    public static boolean placeNQueen(int[][] board, int col){
+    public static void placeNQueen(int[][] board, int col){
         int N = board.length;
         if(col>=N){
-            return true;
+            counter++;
+            printboard(board);
+            System.out.println();
+            return;
         }
         for(int i=0;i<N;i++){
             if(checkQueenCanBePlaced(board, i, col)){
                 board[i][col] = 1;
-                if(placeNQueen(board, col+1)){
-                    return true;
-                }
+                placeNQueen(board, col+1);
                 board[i][col] = 0;
             }
         }
-        return false;
     }
 
-    public static boolean solveNQueen(int N){
+    public static void solveNQueen(int N){
         int[][] board = new int[N][N];
-        if(!placeNQueen(board, 0)){
-            System.out.println("Solution doesn't exits");
-            return false;
-        }
-        printboard(board);
-        return true;
+        placeNQueen(board, 0);
+        System.out.println("Total no of possible solution : " + counter);
+
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
