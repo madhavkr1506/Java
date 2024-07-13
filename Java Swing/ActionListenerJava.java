@@ -15,6 +15,11 @@ public class ActionListenerJava implements ActionListener{
 
     JTextArea area = new JTextArea();
 
+    JMenuBar mb = new JMenuBar();
+    JMenu file,edit;
+    JMenuItem cut,copy,paste,selectAll,New,open,save;
+
+
     ActionListenerJava(){
         prepareGui();
         addComponents();
@@ -42,11 +47,46 @@ public class ActionListenerJava implements ActionListener{
         area.setBackground(Color.LIGHT_GRAY);
         area.setForeground(Color.BLUE);
         frame.add(area);
+
+        file = new JMenu("File");
+        edit = new JMenu("Edit");
+
+        New = new JMenuItem("New");
+        open = new JMenuItem("Open");
+        save = new JMenuItem("Save");
+        cut = new JMenuItem("Cut");
+        copy = new JMenuItem("Copy");
+        paste = new JMenuItem("Paste");
+        selectAll = new JMenuItem("SelectAll");
+
+        file.add(New);
+        file.add(open);
+        file.add(save);
+        edit.add(cut);
+        edit.add(copy);
+        edit.add(paste);
+        edit.add(selectAll);
+
+        mb.add(file);
+        mb.add(edit);
+
+        frame.setJMenuBar(mb);
+
+        frame.revalidate();
+        frame.repaint();
         
+
     }
 
     public void AllActionEvent(){
         btn1.addActionListener(this);
+        New.addActionListener(this);
+        open.addActionListener(this);
+        save.addActionListener(this);
+        cut.addActionListener(this);
+        copy.addActionListener(this);
+        paste.addActionListener(this);
+        selectAll.addActionListener(this);
     }
     public static void main(String[] args) {
         new ActionListenerJava();
@@ -58,6 +98,29 @@ public class ActionListenerJava implements ActionListener{
         if(source == btn1){
             frame.getContentPane().setBackground(Color.RED);
             btn1.setBackground(Color.BLACK);
+        }
+
+        if(source == New){
+            area.setText("");
+        }
+
+        if(source == open){
+            area.setText("Open File");
+        }
+        if(source == save){
+            area.setText("Save File");
+        }
+        if(source == cut){
+            area.cut();
+        }
+        if(source == copy){
+            area.copy();
+        }
+        if(source == paste){
+            area.paste();
+        }
+        if(source == selectAll){
+            area.selectAll();
         }
     }
 
