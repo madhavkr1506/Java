@@ -21,8 +21,9 @@ public class Application1 implements ActionListener{
         prepareFrame2();
         addComponentToframe1();
         addComponentToframe2();
-        allActionPerformed();
         addMenu();
+        allActionPerformed();
+        
     }
 
     public void prepareFrame1(){
