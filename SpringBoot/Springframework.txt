@@ -1,0 +1,99 @@
+SpringBoot: it is s spring module which explain spring framework for java development.
+it is used to create standalone spring based applications which we can run.
+it removes dependencies and lot of configuration and aimed at rapid application development.
+springboot framework comes with auto dependency http server, auto configuration management endpoints and spring boot cli.
+
+features of spring boot : 
+
+spring cli : it allows you to groovy for writing spring boot application and avoids boilerplate code.
+
+starter dependency : it will aggregate common dependencies together and eventually improves productivity.
+
+spring initializer : a web application, which can create an internal project structure for you.
+
+auto configuration : it will load the default configurations according to the project you are working on.
+
+spring actuator : it helps while running spring boot application.
+
+logging and security : it will ensure that all application made using spring boot are properly secured without any hassle.
+
+
+why do we need spring boot?
+
+stability
+based on JVM
+connectivity
+flexibility
+open source
+cloud native
+
+spring vs spring boot
+
+spring  : takes time to have spring application up and running. manages life cycle of java.dependency injection framework.it is a web application framework based on java and libraries.
+
+springboot : shortest way to run spring application. no need to worry about configuring a data source.pre configured set of frameworks/technologies. it is a spring module which explain spring framework for java development.
+
+
+
+what is mvc?
+
+it is a java framework which is used to build web applications. it follows the model view controller design.
+
+it also implements all the  basic features of a core spring framework like dependency injection.
+
+spring mvc provide a degnified solution to use mvc  in spring framework by the help of dispatcher servlet.
+
+dispatcher servlet is a class that receive the incomming request and maps it to the right resource adjust the controller models and views.
+
+model basically contains the code data of the application or data can be either single object or group of objects.
+
+controller basically contains business logic of an application and can use the added controller annotation to mark the class as controller.
+
+view is used to represent the information in particular format and here we can use the JSP + J STL to create a view page.
+
+front controller in spring web mvc the dispatcher servlet class work as front controller.
+
+Spring boot is based on spring and spring is based on model view controller.
+
+model and viwes object are have to see what resources are comming to the application and what the application has to look like and controller will handle all the action that happening at the application.
+
+
+what is dependency injection ?
+the process of creating an object for some other class and let the class directly using the dependency is called dependency injection.
+
+mainly three classes involves in dependency injection :
+client class : it is dependent on service class
+service class : provide service to the service class
+injector class : injecting service class object into client class
+
+principal on which dependency injection based on : 
+inversion of control :
+a class should not configure its dependencies statically but should be configured by some other class from outside.
+
+a class should concentrate on fulfiling its responsibilities like the flow of an application, and not on creating objects.
+
+types of dependency injection :
+constructor : dependencies are provided through a class constructor.
+
+setter : injector methods injects the dependency to the setter method exposed by the client.
+
+interface : injector uses the interface to provide the dependendcy to the client class.
+
+
+Benefits of dependency injection :
+change object at run time
+enables an easy way to interconnect the components
+application can be easily extended
+unit testing is made much easier
+reduction of boiler plate code
+
+autowire : it satisfies the dependency of both the classes and both classes know the existence of each other.
+
+@ResponseBody : it is use when we want to return specific data, not web page.
+
+@RequestMapping : it is used when we want to return a webpage by mapping url.
+
+
+
+
+
