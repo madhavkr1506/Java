@@ -1,0 +1,69 @@
+ssl and tls:
+--------------
+
+
+secure socket layer and transport layer security are cryptographic protocols designed to provide secure communication over a computer network.
+they used secure connections between web browsers and servers.
+they encryptic data and protect it from eavesdroping, tampering, and forgery.
+
+ssl:
+
+developed by netscape in mid 1990s.
+it is first widely accepted protocols for secure communication.
+
+ssl uses a combination of public key(asymetric) and private key(symetric) encryption.
+it also provide data integrity checks to ensure that the data has not been altered during transmission.
+
+tls:
+
+it is successor of ssl.
+it is released in 1999.
+like ssl, tls provide confidentiality, integrity, and authentication for data transmitted between client and server.
+it uses stronger algorithms and more secure key exchange mechanisms to ssl.
+
+
+
+encryption:
+
+1. symetric: a single key is used to both encrypt and decrypt the data.
+this key must kept secret between the communication parties.
+private key encryption: sometimes symetric encryption is reffered to as private key encryption because the same key is used privately  by both the sender and receiver.
+example algorithm: aes, des, and 3des
+
+
+2. asymetric: two keys(public and private) are used. the public key is used to encrypt and private key is used to decrypt it.
+
+public key encryption: the public key is widely distributed and can be used by anyone to encrypt the message. however, only the corressponding private key holder can decrypt it.
+example algorithm: rsa, dsa, ecc
+
+
+
+authentication:
+
+ssl/tls uses digital ceryificates to authenticate the identity of parties involved in the communnication.
+
+integrity:
+
+this is done using cryptographic hash function that detect any change in the data.
+
+handshake process:
+
+client and server agree on cryptographic keys and algorithm to be used for secure communication.
+
+during handshake, server presents its digital certificates, the client and server agree on suite, and keys are exchanged.
+
+ssl/tls handshake process:
+---------------------------
+
+
+1. client hello
+2. server hello
+3. server certificates
+4. server key exchange
+5. client certificate request
+6. client certificate
+7. client key exchange
+8. certificate verify
+9. change cipher spec
+10. finished 
+11. secure communication begins 
