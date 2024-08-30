@@ -13,7 +13,7 @@ public class ImagejExample3 {
         System.out.println("Original Height: " + image.getHeight());
         System.out.println("Original Width: " + image.getWidth());
 
-        image.show();
+        
 
         ImageProcessor processor = image.getProcessor();
         System.out.println("get color mode: " + processor.getColorModel());
@@ -24,5 +24,28 @@ public class ImagejExample3 {
         System.out.println("get auto threshold: " + processor.getAutoThreshold());
         System.out.println("get histogram max: " + processor.getHistogramMax());
         System.out.println("get histogram min: " + processor.getHistogramMin());
+
+        // processor.blurGaussian(2.0); //--> smooth an edge by reducing noise and details.
+        // this is done by averaging the pixels with their neighbors.
+
+        // ImagePlus blurredImage = new ImagePlus("Blurred Image",processor);
+
+        // blurredImage.show();
+
+        // processor.findEdges();
+        // ImagePlus edgeDetection = new ImagePlus("Edge Detecction: ", processor);
+
+        // edgeDetection.show();
+        // edge detection is uded to find boundaries within images, which is useful in identifying objects or regions.
+
+        processor.setAutoThreshold(ImageProcessor.ISODATA2, ImageProcessor.RED_LUT);
+
+        processor.autoThreshold();
+        ImagePlus thresholdImage = new ImagePlus("Threshold Image", processor);
+
+        thresholdImage.show();
+
+        // thresholding convert image into a binary image(black and white) based on pixel intensity threshold. this is particularly useful for  isolating objects in an image.
+
     }
 }
