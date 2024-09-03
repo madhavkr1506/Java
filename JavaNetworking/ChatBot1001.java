@@ -14,7 +14,7 @@ public class ChatBot1001 {
     public static void main(String[] args) {
         while (true) {
             try{
-                URL url = new URL("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDhiRc_Rfd2CKOM801d5aoqKnu7q7pbovo");
+                URL url = new URL("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=");
 
                 System.out.print("Enter your question: ");
                 String userInput = System.console().readLine();
