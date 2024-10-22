@@ -12,24 +12,24 @@ public class path_between_vertices {
         }
     }
 
-    public static boolean printPath_usingDFS(int[][] matrix, boolean[] visited, int start, int destination, ArrayList<Integer> path){
+    public static void printPath_usingDFS(int[][] matrix, boolean[] visited, int start, int destination, ArrayList<Integer> path){
         path.add(start);
         visited[start] = true;
 
         if(start == destination){
-            return true;
+            System.out.println("Path: " + path);
         }
 
         for(int i=0;i<matrix.length;i++){
             if(matrix[start][i] == 1 && !visited[i]){
-                if(printPath_usingDFS(matrix, visited, i, destination, path)){
-                    return true;
-                }
+                printPath_usingDFS(matrix, visited, i, destination, path);
             }
         }
 
         path.remove(path.size() - 1);
-        return false;
+        // return false;
+
+        visited[start] = false;
     }
 
 
@@ -61,17 +61,19 @@ public class path_between_vertices {
         ArrayList<Integer> path = new ArrayList<>();
         boolean[] visited = new boolean[vertices];
 
-        if(printPath_usingDFS(adjacency_matrix, visited, start, destination, path)){
-            System.out.println("There exists a path between " + start + " and " + destination);
-            System.out.println("Printing path: ");
-            for(int i=0;i<path.size();i++){
-                System.out.print(path.get(i) + " ");
-            }
-        }
-        else{
-            System.out.println("There is no path between " + start + " and " + destination);
-        }
+        // if(printPath_usingDFS(adjacency_matrix, visited, start, destination, path)){
+        //     System.out.println("There exists a path between " + start + " and " + destination);
+        //     // System.out.println("Printing path: ");
+        //     // for(int i=0;i<path.size();i++){
+        //     //     System.out.print(path.get(i) + " ");
+        //     // }
+        // }
+        // else{
+        //     System.out.println("There is no path between " + start + " and " + destination);
+        // }
 
-        
+        System.out.println("There exists a path between " + start + " and " + destination);
+        printPath_usingDFS(adjacency_matrix, visited, start, destination, path);
+
     }
 }
