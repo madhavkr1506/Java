@@ -25,4 +25,4 @@ public class min_cost_to_reach_nth_city {
 
 
 
-// i have to make it correct there is several logical issues;
+
