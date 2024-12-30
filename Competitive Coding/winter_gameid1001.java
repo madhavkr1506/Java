@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class winter_gameid1001 {
 
     public static void main(String[] args) {
-        int[] array = {3,1,2,4,5,21,22,30};
+        int[] array = {1,2,0,1};
         int n = array.length;
         int longestseq = findlongestsequence(array, n);
         System.out.println("LongestSequence = " + longestseq);
@@ -17,6 +17,9 @@ public class winter_gameid1001 {
             if(array[j] - array[i] == 1){
                 seq++;
                 longestseq = Math.max(longestseq, seq);
+            }
+            else if(array[j] == array[i]){
+                continue;
             }
             else{
                 seq = 1;
