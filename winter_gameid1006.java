@@ -3,7 +3,7 @@ public class winter_gameid1006 {
         String str = "abc";
         int[][] queries = {{0,1,0},{1,2,1},{0,2,1}};
         String result = shiftingletters(str, queries);
-        System.out.println("Result: " + result);
+        System.out.println("Required Result: " + result);
 
     }
     public static String shiftingletters(String str, int[][] queries){
@@ -36,8 +36,6 @@ public class winter_gameid1006 {
             result += (char)(((str.charAt(i) - 'a' + count)%26 )+ 'a');
             
         }
-
-
         return result;
     }
 }
