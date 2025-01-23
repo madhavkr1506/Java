@@ -51,7 +51,7 @@ public class numbers_of_islands {
                 int newx = currx + xdir[d];
                 int newy = curry + ydir[d];
 
-                if(isValid(newx, newy, m, n) && !visited[newx][newy]){
+                if(isValid(newx, newy, m, n) && grid[newx][newy] == "1" && !visited[newx][newy]){
                     visited[newx][newy] = true;
                     queue.offer(new int[]{newx,newy});
                 }
