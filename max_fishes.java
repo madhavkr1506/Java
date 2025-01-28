@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class max_fishes {
 
     public static void main(String[] args) {
@@ -10,7 +13,7 @@ public class max_fishes {
         for(int i=0;i<row;i++){
             for(int j=0;j<col;j++){
                 if(grid[i][j] != 0){
-                    requiredMax = Math.max(requiredMax, function1(row, col, grid));
+                    requiredMax = Math.max(requiredMax, function1(i, j, grid));
                 }
             }
         }
@@ -19,7 +22,7 @@ public class max_fishes {
     }
 
     public static int function1(int row, int col, int[][] grid){
-        if(row < 0 || row >= grid.length || col < 0 || col >= grid[0].length){
+        if(row < 0 || row >= grid.length || col < 0 || col >= grid[0].length || grid[row][col] == 0){
             return 0;
         }
         int ans = grid[row][col];
@@ -28,4 +31,6 @@ public class max_fishes {
 
         return ans;
     }
+
+    
 }
