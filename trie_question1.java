@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class trie_question1 {
     public static void main(String[] args) {
 
-        // String str = "mad";
-        String[] words = {"madhav","m","ma","mad","madh","madha"};
+        String str = "ap";
+        String[] words = {"apple","app","apex","banana","bat","battle"};
 
         Trie root = new Trie();
         
@@ -12,11 +15,14 @@ public class trie_question1 {
 
         // System.out.println(startsWith(root, str));
 
-        StringBuilder maxPrefixString = new StringBuilder();
+        // StringBuilder maxPrefixString = new StringBuilder();
 
-        longestPrefix(root, new StringBuilder(), maxPrefixString);
+        // longestPrefix(root, new StringBuilder(), maxPrefixString);
 
-        System.out.println(maxPrefixString);
+        // System.out.println(maxPrefixString);
+
+        List<String> autoCompleteList = autoComplete(root, str);
+        System.out.println(autoCompleteList);
 
 
 
@@ -98,6 +104,37 @@ public class trie_question1 {
                 longestPrefix(current.children[i], temp, maxPrefix);
                 
                 temp.deleteCharAt(temp.length() - 1);
+            }
+        }
+    }
+
+    public static List<String> autoComplete(Trie root, String prefix){
+        List<String> prefixString = new ArrayList<>();
+
+        Trie current = root;
+
+        for(int i=0;i<prefix.length();i++){
+            int index = prefix.charAt(i) - 'a';
+            if(current.children[index] == null){
+                return prefixString;
+            }
+
+            current = current.children[index];
+        }
+
+        dfs(current,prefix,prefixString);
+        return prefixString;
+
+    }
+
+    public static void dfs(Trie current, String prefix, List<String> prefixString){
+        if(current.endsofword){
+            prefixString.add(prefix);
+        }
+
+        for(int i=0;i<26;i++){
+            if(current.children[i] != null){
+                dfs(current.children[i], prefix+(char)(i+'a'), prefixString);
             }
         }
     }
