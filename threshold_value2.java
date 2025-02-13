@@ -8,29 +8,24 @@ public class threshold_value2 {
     }
 
     public static int function1(int[] array, int k){
-        if(array.length < 2){
-            return -1;
-        }
         PriorityQueue<Integer> queue = new PriorityQueue<>();
         for(int i=0;i<array.length;i++){
-            if(array[i] < k){
-                queue.add(array[i]);
-            }
-        }
-
-        int operationCount = 0;
-        while(queue.size() > 1){
-            operationCount++;
-            int ele1 = queue.poll();
-            int ele2 = queue.poll();
-            int result = ele1 * 2 + ele2;
-            if(result < k){
-                queue.add(result);
-            }
+            
+            queue.add((int)array[i]);
             
         }
 
-        if(!queue.isEmpty() && queue.peek() < k) return -1;
+        int operationCount = 0;
+        while(!queue.isEmpty()){
+            int ele1 = queue.poll();
+            if(ele1 >= k){
+                break;
+            }
+            int ele2 = queue.poll();
+            queue.add(Math.min(ele1, ele2) * 2 + Math.max(ele1, ele2));
+            operationCount++;
+            
+        }
 
         return operationCount;
 
