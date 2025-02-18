@@ -1,15 +1,7 @@
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class grid_structure {
-    public static void main(String[] args) {
-        int[][] grid = {{1,0,1},{0,1,1},{1,0,1}};
-        printGrid(grid);
-
-        System.out.println("Hey...........");
-
-        System.out.println(gridTraversal(grid));
-
-        printGrid(grid);
-
-    }
 
     public static void printGrid(int[][] grid){
         int len = grid.length;
@@ -20,74 +12,91 @@ public class grid_structure {
             System.out.println();
         }
     }
+    public static void main(String[] args) {
+        int[][] grid = {{1,0,1},{0,1,1},{1,0,1}};
+        printGrid(grid);
 
-    public static int gridTraversal(int[][] grid){
+        System.out.println("Hey...........");
+
+        System.out.println(findLargeIsland(grid));
+
+        printGrid(grid);
+
+    }
+
+    public static int findLargeIsland(int[][] grid){
         int len = grid.length;
+        HashMap<Integer, Integer> map = gridTraversal(grid);
+        int maxIsland = 0;
+        for(int i=0;i<len;i++){
+            for(int j=0;j<len;j++){
+                if(grid[i][j] == 0){
+                    HashSet<Integer> set = new HashSet<>();
+                    int[] xdir = {-1,0,1,0};
+                    int[] ydir = {0,-1,0,1};
+                    for(int d=0;d<4;d++){
+                        int newx = i + xdir[d];
+                        int newy = j + ydir[d];
+                        if(isvalid(newx, newy, len) && grid[newx][newy] > 1){
+                            set.add(grid[newx][newy]);
+                        }
+                    }
+
+                    int currentSize = 1;
+                    for(int islandID : set){
+                        currentSize += map.get(islandID);
+
+                    }
+                    maxIsland = Math.max(maxIsland, currentSize);
+                }
+            }
+        }
+
+        if(maxIsland == 0){
+            for(int size : map.values()){
+                maxIsland = Math.max(maxIsland, size);
+            }
+        }
+        return maxIsland;
+
+    }
+
+    public static HashMap<Integer,Integer> gridTraversal(int[][] grid){
+        int len = grid.length;
+
+        HashMap<Integer, Integer> map = new HashMap<>();
 
         int island = 2;
         for(int i=0;i<len;i++){
             for(int j=0;j<len;j++){
                 if(grid[i][j] == 1){
-                    fillPosition(grid, i, j, island);
+                    int size[] = new int[1];
+                    size[0] = fillPosition(grid, i, j, island, size);
+                    map.put(island, size[0]);
                     island++;
                 }
             }
         }
 
-
-        int largeIsland = maxIslandFunction(grid);
-        return largeIsland;
-
+        return map;
     }
 
-    public static void fillPosition(int[][] grid, int row, int col, int island){
+    public static int fillPosition(int[][] grid, int row, int col, int island, int[] size){
         int len = grid.length;
         int[] xdir = {-1,0,1,0};
         int[] ydir = {0,-1,0,1};
         grid[row][col] = island;
+        size[0]++;
         for(int d=0;d<4;d++){
             int newrow = row + xdir[d];
             int newcol = col + ydir[d];
 
             if(isvalid(newrow, newcol, len) && grid[newrow][newcol] == 1){
-                fillPosition(grid, newrow, newcol, island);
+                fillPosition(grid, newrow, newcol, island, size);
             }
         }
+        return size[0];
     }
-
-    public static int maxIslandFunction(int[][] grid){
-        int maxCount = 0;
-        int len = grid.length;
-        for(int i=0;i<len;i++){
-            for(int j=0;j<len;j++){
-                if(grid[i][j] == 0){
-                    int count[] = new int[1];
-                    countPosition(grid, i, j,count);
-                    maxCount = Math.max(maxCount, count[0]);
-                }
-            }
-        }
-        return maxCount;
-    }
-
-    public static void countPosition(int[][] grid, int row, int col, int[] count){
-        int len = grid.length;
-        int[] xdir = {-1,0,1,0};
-        int[] ydir = {0,-1,0,1};
-    
-        grid[row][col] = 1;
-        count[0]++;
-        for(int d=0;d<4;d++){
-            int newrow = row + xdir[d];
-            int newcol = col + ydir[d];
-
-            if(isvalid(newrow, newcol, len) && grid[newrow][newcol] == 1){
-                countPosition(grid, newrow, newcol, count);
-            }
-        }
-        grid[row][col] = 0;
-    }
-
 
     public static boolean isvalid(int newx, int newy, int len){
         return newx >= 0 && newx < len && newy >= 0 && newy < len;
