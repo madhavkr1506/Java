@@ -34,7 +34,7 @@ public class Practice4 {
             return 0;
         }
         int max_candy = 0;
-        int low = 0;
+        int low = 1;
         int high = Arrays.stream(candies).max().getAsInt();
         
         while(low <= high){
